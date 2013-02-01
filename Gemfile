@@ -9,7 +9,7 @@ gem "aws-s3"
 gem "pony"	
 
 group :development do
-  gem "sqlite3-ruby"
+  #gem "sqlite3-ruby"
   gem "dm-sqlite-adapter"
 	gem "shotgun"
 	gem 'passenger'
@@ -17,7 +17,7 @@ group :development do
 end
 
 group :test do
-  gem "sqlite3-ruby"
+  #gem "sqlite3-ruby"
   gem "dm-sqlite-adapter"
 	gem "rspec"
 	gem "factory_girl"
