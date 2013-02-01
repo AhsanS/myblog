@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ 
+<manifest xmlns="http://schemas.microsoft.com/wlw/manifest/weblog">
+ 
+  <options>
+    <clientType>WordPress</clientType>
+	<supportsKeywords>Yes</supportsKeywords>
+	<supportsGetTags>Yes</supportsGetTags>
+  </options>
+
+  <views>
+	    <default>WebLayout</default>
+	    <view type="WebLayout" src="/webpreview.html" />
+	    <view type="WebPreview" src="/webpreview.html" />
+  </views>
+
+ 
+</manifest>

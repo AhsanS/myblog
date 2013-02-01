@@ -1,0 +1,25 @@
+%div.archive
+	%table
+		%thead
+			%tr
+				%th Date
+				%th Title
+				%th Tags
+				%th Categories
+		%tbody
+			- @posts.each do |post|
+				%tr
+					%td=post.url_date 
+					%td
+						%a{:href => post.link, :rel => "follow"}
+							=post.title
+					%td
+						- post.tags.each do |tag|
+							%a{:href => "#{tag.link}", :rel => "follow"}
+								=tag.tag
+					%td
+						- post.categories.each do |category|
+							%a{:href => "#{category.link}", :rel => "follow"}
+								=category.category
+					
+				

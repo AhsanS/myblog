@@ -1,0 +1,6 @@
+%div.widget.tag_cloud
+	%h4 Tag Cloud
+	%ul
+		-tag_cloud.each do |tag|
+			%li
+				%a{:href => "#{tag.link}", :rel => "follow"}=tag.tag

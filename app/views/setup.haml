@@ -1,0 +1,468 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title="Shout Mouth Setup"
+  %script{:type => "text/javascript", :src => "/scripts/jquery-1.5.min.js"}
+  -@posts_on_home_page = @values["posts_on_home_page"].nil? ? "" : @values["posts_on_home_page"]
+  -@check_for_spam = @values["check_spam"].nil? ? "" : @values["check_spam"]
+  -@comments_open_for_days_check = @values["comments_open_for_days_check"].nil? ? "" : @values["comments_open_for_days_check"]
+  -@comments_open_for_days = @values["comments_open_for_days"].nil? ? "" : @values["comments_open_for_days"]
+  -@use_file_based_storage = @values["use_file_based_storage"].nil? ? "" : @values["use_file_based_storage"]
+  -@use_google_analytics = @values["use_google_analytics"].nil? ? "" : @values["use_google_analytics"]
+  :javascript
+    $(document).ready(function(){
+
+    if("#{@posts_on_home_page}" != ""){
+      $("#posts_on_home_page").val('#{@posts_on_home_page}')
+    }
+
+    if("#{@check_for_spam}" != ""){
+      if("#{@check_for_spam}" == "true"){
+        $(".akismet_section").show();
+      }
+      var check_spam_radios = $("input[name='check_spam']");
+      check_spam_radios.filter('[value=#{@check_for_spam}]').attr('checked',true);  
+    }
+
+    if("#{@comments_open_for_days_check}" != ""){
+      if("#{@comments_open_for_days_check}" == "true"){
+        $(".comments_open_for_days_section").show();
+      }
+      var comments_open_for_days_radios = $("input[name='comments_open_for_days_check']");
+      comments_open_for_days_radios.filter('[value=#{@comments_open_for_days_check}]').attr('checked', true);
+    }
+
+    if("#{@comments_open_for_days}" != ""){
+      $("select[name='comments_open_for_days']").val('#{@comments_open_for_days}')
+    }
+
+    if("#{@use_file_based_storage}" != ""){
+      if("#{@use_file_based_storage}" == "false"){
+        $(".amazon_section").show();
+      }
+      var use_file_based_storage_radios = $("input[name='use_file_based_storage']");
+      use_file_based_storage_radios.filter('[value=#{@use_file_based_storage}]').attr('checked', true);
+    }
+
+    if("#{@use_google_analytics}" != ""){
+      if("#{@use_google_analytics}" == "true"){
+        $(".google_analytics_section").show();
+      }
+      var use_google_analytics_radios = $("input[name='use_google_analytics']");
+      use_google_analytics_radios.filter('[value=#{@use_google_analytics}]').attr('checked', true);
+    }
+
+    blog_url = document.location.href.toString()
+    if(blog_url.charAt((blog_url.length -1)) == '/')
+      blog_url = blog_url.slice(0, -1)
+
+    if(blog_url.indexOf("setup") == -1)
+      $("input[name='url']").val(blog_url);
+  
+    $(".check_for_spam").click(function(){
+         if($(this).val() == "true"){
+          $(".akismet_section").show(); 
+         }
+         else{
+          $(".akismet_section").hide();  
+          $(".akismet_section > input").val(null);
+         }
+      });
+
+      $(".check_for_storage").click(function(){
+        if($(this).val() == "false"){
+          $(".amazon_section").show();
+        }
+        else{
+          $(".amazon_section").hide();
+          $(".amazon_section > input").val(null);
+        }
+      });
+
+      $(".check_google_analytics").click(function(){
+        if($(this).val() == "true"){
+          $(".google_analytics_section").show();
+        }
+        else{
+          $(".google_analytics_section").hide();
+          $(".google_analytics_section > input").val(null);
+        }
+      });
+    
+      $(".check_allow_unlimited_comments").click(function(){
+        if($(this).val() == "true"){
+          $(".comments_open_for_days_section").show();
+        }
+        else{
+          $(".comments_open_for_days_section").hide();
+          $(".comments_open_for_days_section > select").val("0");
+        }
+      });
+      $(".information").click(function(){
+        if($(this).hasClass("information_show"))
+          $($(this)).removeClass("information_show");
+        else{
+          $(".information").removeClass("information_show");
+          $($(this)).addClass("information_show");
+        }
+      });
+      
+    });
+
+  %style{:type => "text/css", :media => "screen"}
+    :plain
+      body{
+        background-color:#ffffff;
+        color:#222222;
+        font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;
+      }
+      fieldset{
+          width:600px;
+          margin:0 auto;
+          border-bottom-left-radius:4px;
+          border-bottom-right-radius:4px;
+          border-bottom-style:solid;
+          border-bottom-width:1px;
+          border-left-style:solid;
+          border-left-width:1px;
+          border-right-style:solid;
+          border-right-width:1px;
+          border-top-left-radius:4px;
+          border-top-right-radius:4px;
+          border-top-style:solid;
+          border-top-width:1px;
+          border-bottom-color:#DFDFDF;
+          border-left-color:#DFDFDF;
+          border-right-color:#DFDFDF;
+          border-top-color:#DFDFDF;
+      }
+      h2 {
+          font:italic normal normal 24px/29px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;
+          line-height:35px;
+          margin-bottom:0;
+          margin-left:0;
+          margin-right:0;
+          margin-top:0;
+          padding-bottom:3px;
+          padding-left:0;
+          padding-right:15px;
+          padding-top:10px;
+          text-shadow:#FFFFFF 0 1px 0;
+      }
+      div{
+          font-size:0.8em;
+      }
+      div:after {
+          content: ".";
+          display: block;
+          height: 10px;
+          clear: both;
+          visibility: hidden;
+      }
+      label{
+          float:left;
+          width:200px;
+          vertical-align:middle;
+          padding-top:10px;
+      }
+      span{
+          position:relative;
+          top:-8px;
+          margin-right:15px;
+      }
+      textarea,
+      input,
+      select {
+            border-bottom-left-radius:4px 4px;
+            border-bottom-right-radius:4px 4px;
+            border-bottom-style:solid;
+            border-bottom-width:1px;
+            border-left-style:solid;
+            border-left-width:1px;
+            border-right-style:solid;
+            border-right-width:1px;
+            border-top-left-radius:4px 4px;
+            border-top-right-radius:4px 4px;
+            border-top-style:solid;
+            border-top-width:1px;
+            background-color:#FFFFFF;
+            border-bottom-color:#DFDFDF;
+            border-left-color:#DFDFDF;
+            border-right-color:#DFDFDF;
+            border-top-color:#DFDFDF;
+            float:left;
+            width:300px;
+            height:30px;
+      }
+      .checkbox{
+        float:none;
+        width:15px;
+      }
+      .submit{
+        margin-left:200px;
+        font-weight:bold;
+        border-color:#000000;
+        height:50px;
+        font-size:1.2em;
+      }
+      .hide{
+        display:none;
+      }
+      .clear{clear:both;}
+      .information{
+        font-size:0.9em;
+        color:transparent;
+        width:32px;
+        height:32px;
+        float:left;
+        margin-left:4px;
+        display:block;
+        border:solid 1px #DFDFDF;
+        border-radius:4px 4px 4px 4px;
+        background-image:url('/information.png');
+        background-repeat:no-repeat;
+        background-position:right top;
+        background-color:#ffffff;
+        cursor:pointer;
+      }
+      .information a, a:visited{color:transparent;}
+      .information_show{
+        width:300px;
+        height:auto;
+        position:absolute;
+        color:#000000;
+        margin-left:510px;
+        display:block;
+        z-index:9999;
+        padding:20px;
+      }
+      .information_show a, a:visited{color:#000000;}
+      .errors{
+        position:fixed;
+        top:-7px;
+        right:5px;
+        color: #D8000C;
+        border:solid 2px #D8000C;
+        border-radius:4px 4px 4px 4px;
+        background-color: #FFBABA;
+        padding: 8px;
+      }
+      .errors li{
+        list-style-type:none;
+        font-size:0.7em;
+        font-weight:bold;
+        margin-top:3px;
+      }
+  %body
+    -if @errors.any?
+      %ul.errors
+        -@errors.each do |error|
+          %li
+            =error
+
+    %fieldset
+      %form{:method => "post", :action => "/setup"}
+        %h2 Setup your blog....
+        %div
+          %p
+            Just answer these few question below to get your blog up and running....
+        %h2 General
+        %div
+          %label Url
+          %input{:name => "url", :value => @values["url"]} 
+        %div
+          %label Sitename
+          %input{:name => "site_name", :value => @values["site_name"]}
+        %div
+          %label Site description
+          %input{:name => "site_description", :value => @values["site_description"]}
+        %div
+          %label Number of posts on homepage
+          %select{:name => "posts_on_home_page", :id => "posts_on_home_page"}
+            %option{:value => "1"} One
+            %option{:value => "2"} Two
+            %option{:value => "3"} Three
+            %option{:value => "4"} Four
+            %option{:value => "5"} Five
+            %option{:value => "6"} Six
+            %option{:value => "7"} Seven
+            %option{:value => "8"} Eight
+            %option{:value => "9"} Nine
+            %option{:value => "10"} Ten
+        %div
+          %label Footer text
+          %textarea{:name => "footer_more_text", :rows => "10", :style => "height:100px"}
+            =@values["footer_more_text"]
+        %h2 Comments
+        %div
+          %label Check for spam?
+          %input{:type => "radio", :name => "check_spam", :value => "true", :class => "checkbox check_for_spam"} 
+          %span Yes
+          %input{:type => "radio", :name => "check_spam", :value => "false", :class => "checkbox check_for_spam", :checked => "checked"} 
+          %span No
+        %div.hide.akismet_section
+          %label Akismet key
+          %input{:name => "akismet_key", :value => @values["akismet_key"]} 
+          %div.information
+            Akismet filters out your comment
+            and track-back spam for you, so you
+            can focus on more important things.
+            %br
+            %br
+            You can sign up for an api key for free 
+            %a{:href => "https://akismet.com/", :target => "_blank"} here 
+            at akismet.com
+        %div
+          %label Limit days comments are open?
+          %input{:type => "radio", :name => "comments_open_for_days_check", :value => "true", :class => "checkbox check_allow_unlimited_comments"} 
+          %span Set a limit
+          %input{:type => "radio", :name => "comments_open_for_days_check", :value => "false", :class => "checkbox check_allow_unlimited_comments", :checked => "checked"} 
+          %span No limit - open forever.
+        %div.hide.comments_open_for_days_section 
+          %label Days
+          %select{:name => "comments_open_for_days", :value => @values["comments_open_for_days"]}
+            %option{:value => "0"} --choose time period--
+            %option{:value => "1"} one day
+            %option{:value => "3"} three day's
+            %option{:value => "5"} five day's
+            %option{:value => "10"} ten day's
+            %option{:value => "15"} fifteen day's
+            %option{:value => "20"} twenty day's
+            %option{:value => "30"} thirty day's
+            %option{:value => "60"} sixty day's
+            %option{:value => "90"} ninety day's
+            %option{:value => "120"} one hundred and twenty day's
+            %option{:value => "180"} one hundred and eighty day's
+            %option{:value => "240"} two hundred and fourty day's
+            %option{:value => "365"} one year
+        %h2 Asset Storage
+        %div 
+          %label Asset storage
+          %input{:type => "radio", :name => "use_file_based_storage", :value => "true", :class => "checkbox check_for_storage", :checked => "checked"} 
+          %span Filesystem
+          %input{:type => "radio", :name => "use_file_based_storage", :value => "false", :class => "checkbox check_for_storage"}
+          %span Amazon S3
+        %div.hide.amazon_section
+          %label Amazon S3 key
+          %input{:name => "amazon_s3_key", :value => @values["amazon_s3_key"]}
+          %div.information
+            Amazon S3 is storage for the Internet. It is designed to make web-scale computing easier for developers. 
+            Let us store your images and assets for your posts up at S3.
+            %br
+            %br
+            Sign up for Amazon S3
+            %a{:href => "http://aws.amazon.com/s3/", :target => "_blank"} here.
+        %div.hide.amazon_section
+          %label Amazon S3 secret key
+          %input{:name => "amazon_s3_secret_key", :value => @values["amazon_s3_secret_key"]}
+        %div.hide.amazon_section
+          %label Amazon S3 bucket
+          %input{:name => "amazon_s3_bucket", :value => @values["amazon_s3_bucket"]}
+        %div.hide.amazon_section
+          %label Amazon S3 Url
+          %input{:name => "amazon_s3_file_location", :value => "http://s3.amazonaws.com/"}
+        %h2 Themes
+        %div
+          %label Theme
+          %select{:name => "theme"}
+            %option{:value => "default"} Default
+        %h2 Social
+        %div
+          %label Twitter account
+          %input{:name => "twitter_account", :value => @values["twitter_account"]}
+          %div.information
+            Be social and have a twitter account sign up
+            %a{:href => "http://twitter.com/", :target => "_blank"} here.
+        %h2 Analytics
+        %div 
+          %label Use google analytics?
+          %input{:type => "radio", :name => "use_google_analytics", :value => "true", :class => "checkbox check_google_analytics"} 
+          %span Yes
+          %input{:type => "radio", :name => "use_google_analytics", :value => "false", :class => "checkbox check_google_analytics", :checked => "checked"}
+          %span No
+        %div.hide.google_analytics_section
+          %label Google analytics key
+          %input{:name => "google_analytics_key", :value => @values["google_analytics_key"]}
+          %div.information
+            Google Analytics is the enterprise-class web analytics solution that gives you rich insights into your website traffic.
+            %br
+            %br
+            Sign up for a Google analytics account
+            %a{:href => "http://www.google.com/analytics/", :target => "_blank"} here.
+            %br
+            %br
+            Google analytics key example UA-000000-0 (Do not paste in the entire tracking script just the id)
+        %h2 Email Settings
+        %div
+          %label SMTP host
+          %input{:name => "smtp_host", :value => @values["smtp_host"]}
+          %div.information
+            SMTP host - name of your smtp provider (example - smtp.provider.com)
+            %br
+            %br
+            SMTP port - port number of your smtp server (example - 25)
+            %br
+            %br
+            SMTP user - username used to authenticate against your email server. (example - user@mysite.com)
+            %br
+            %br
+            SMTP password - password used to authenticate against your email server. (example - password)
+            %br
+            %br
+            SMTP authentication - check with your email provider for more information (if unsure use plain)
+            %br
+            %br
+            SMTP domain - tells the email server which domain is trying to perform a mail action (example - mysite.com)
+            %br
+            %br
+            Site email - used in the from field when sending mail (example - noreply@mysite.com)
+            %br
+            %br
+            Administrator email - used to send notifications to such as new comments (example - administrator@mysite.com)
+            %br
+        %div
+          %label SMTP port
+          %input{:name => "smtp_port", :value => @values["smtp_port"]}
+        %div
+          %label SMTP user
+          %input{:name => "smtp_user", :value => @values["smtp_user"]}
+        %div
+          %label SMTP password
+          %input{:name => "smtp_password", :value => @values["smtp_password"]}
+        %div
+          %label SMTP authentication type
+          %select{:name => "smtp_auth", :value => @values["smtp_auth"]}
+            %option{:value => "plain"} plain
+            %option{:value => "login"} login
+            %option{:value => "cram_md5"} cram_md5
+        %div
+          %label SMTP domain
+          %input{:name => "smtp_domain", :value => @values["smtp_domain"]}
+        %div
+          %label Site email address
+          %input{:name => "site_email", :value => @values["site_email"]}
+        %div
+          %label Administrator email
+          %input{:name => "administrator_email", :value => @values["administrator_email"]}
+        %h2 Categories
+        %div
+          %label Categories (comma separated)
+          %input{:name => "categories", :value => @values["categories"]}
+        %h2 User Information
+        %div
+          %label Firstname
+          %input{:name => "user[firstname]", :value => @values["user"]["firstname"]}
+        %div
+          %label Lastname
+          %input{:name => "user[lastname]", :value => @values["user"]["lastname"]}
+        %div
+          %label Email
+          %input{:name => "user[email]", :value => @values["user"]["email"]}
+        %div 
+          %label Password
+          %input{:type => "password", :name => "user[password]", :value => @values["user"]["password"]}
+        %div
+          %label Confirm password
+          %input{:type => "password", :name => "user[password_confirm]", :value => @values["user"]["password_confirm"]}
+        %div
+          %input{:type => "submit", :value => "get bloggin!", :class => "submit"}

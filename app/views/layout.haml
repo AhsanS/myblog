@@ -1,0 +1,28 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+	%head
+		%title=title
+		= partial(:'shared/_css')
+		= partial(:'shared/_scripts')
+		= partial(:'shared/_discovery')
+	%body
+		#container
+			#header
+				= partial(:'shared/_header')
+			#menu
+				= partial(:'shared/_menu')
+			#separator
+			#contents
+				= yield
+			#widgets
+				= plugin(PluginFactory.instance.get_plugin(:twitter))
+				= plugin(PluginFactory.instance.get_plugin(:posts_by_month))
+				= plugin(PluginFactory.instance.get_plugin(:tag_cloud))
+				
+				
+			#footer== &copy; #{DateTime.now.year} #{Blog.site_name} #{Blog.footer_more_text}
+	 
+		-if Blog.use_google_analytics
+			=partial(:'shared/_google_analytics')
+		
+		

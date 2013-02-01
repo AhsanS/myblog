@@ -1,0 +1,9 @@
+*.swp
+.rvmrc
+.powenv
+db/*.db
+config/_config.yaml
+logs/
+public/uploads
+public/cache
+tmp/*.*

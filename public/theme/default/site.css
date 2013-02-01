@@ -1,0 +1,308 @@
+body {
+	color:#222222;
+	font-family:Georgia, 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+	font-size:1em;
+}
+img{
+	border:none;
+}
+h1 {
+	font-size: 2em;
+}
+h1, h2, h3, h4, h5, h6{
+	font-weight: normal;
+	color:#7a0000;
+}
+p {
+    line-height: 1.6;
+    margin: 0 0 1.5em;
+}
+a {
+	color:#7a0000;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+pre {
+	font-size:0.7em;
+	overflow: auto;
+	width:600px;
+	font-family:'Monaco', 'Consolas';
+}
+/* no vertical scrollbars for IE 7 */
+*:first-child+html pre {
+	padding-bottom: 20px;
+	overflow-y: hidden;
+	overflow: visible;
+	overflow-x: auto; 
+	}
+/* no vertical scrollbars for IE 6 */
+* html pre { 
+	padding-bottom: 20px;
+	overflow: visible;
+	overflow-x: auto;
+}
+
+#container{
+	width:880px;
+	margin:50px auto;
+	padding:0px 50px 0px 50px;
+}
+#header{
+	float:left;
+}
+#header img{
+	position:relative;
+	top:20px;
+}
+#header a{
+	text-decoration:none;
+}
+#menu{
+	float:right;
+	margin-right:40px;
+}
+#menu ul{
+	margin-top:30px;
+}
+#menu li{
+	float:left;
+	display:block;
+	margin-right:20px;
+}
+.child_menu{
+	padding:0px;
+	margin:0px 0px 0px 0px !important;
+	display:none;
+	position:absolute;
+	border:solid 1px #EEEEEE;
+	background-color:#FFFFFF;
+}
+.child_menu_item{
+	float:none !important;
+	margin:0px !important;
+	padding:0px;
+}
+.child_menu_item_link{
+	display:block;
+	margin:0px 0px 0px 0px !important;
+	padding:6px 10px 6px 15px !important;
+	font-size:0.8em;
+}
+.child_menu_item_link:hover{
+	text-decoration:none;
+	background-color:#7A0000;
+	color:#FFFFFF;
+}
+
+#separator{
+	float:left;
+	height:10px;
+	width:100%;
+	margin-bottom:20px;
+	border-bottom:solid 1px #EEEEEE;
+}
+#contents{
+	float:left;
+	width:70%;
+	border-right:solid 1px #EEEEEE;
+	padding-right:4%;
+}
+.post:not(:last-child){
+	border-bottom:solid 1px #EEEEEE;
+}
+.post_body{
+  margin:10px 0px 10px 0px;
+  line-height: 1.6;
+  margin: 0 0 1.5em;
+}
+.post_body *::selection{
+  background: #222222;
+  color: #FFFFFF;
+}
+.post_body *::-moz-selection{
+  background: #222222;
+  color: #FFFFFF;
+}
+.post_body br{
+	line-height:10px;
+}
+.post_body p{
+	margin:0 0 10px 0;
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+ 	white-space: -pre-wrap;   &nbsp;  /* Opera 4-6 */
+ 	white-space: -o-pre-wrap;    /* Opera 7 */
+/* 	white-space: pre-wrap;   &nbsp;   /* css-3 */*/
+ 	word-wrap: break-word;   &nbsp;   /* Internet Explorer&nbsp;5.5+ */
+}
+.post_body li{
+	color:#222222;
+}
+.post_body blockquote{
+	margin:0;
+}
+.post_body pre{
+	padding:12px 0px 0px 0px !important;
+}
+.post_information{
+	margin-bottom:15px;
+	text-align:left;
+	font-weight:bold;
+	font-size:0.8em;
+	float:left;
+	width:100%;
+}
+.post_social_links{
+	margin-bottom:10px;
+	text-align:left;
+	font-weight:bold;
+	font-size:0.8em;
+	float:left;
+	width:100%;	
+	color:#999999;
+}
+.post_social_links a{
+	color:#999999;
+}
+.comments{
+	margin-top:20px;
+}
+.comments h4{
+	font-weight:bold;
+}
+.comment{
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.comment{
+	border-bottom:solid 1px #EEEEEE;
+}
+.comment_name{
+	float:left;
+	width:50%;
+	font-size:0.8em;
+	font-weight:bold;
+}
+.comment_time{
+	float:right;
+	width:50%;
+	text-align:right;
+	font-weight:bold;
+	font-size:0.8em;
+}
+.comment_avatar{
+	float:left;
+	margin-top:18px;
+	width:15%;
+}
+.comment_body{
+	float:left;
+	width:85%;
+  margin-top:5px;
+}
+.comment_body pre{
+  width:100%;
+  white-space: pre-wrap;
+	font-family:Georgia, 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+	font-size:0.8em;
+  overflow:hidden;
+}
+.add_comment{
+	
+}
+.add_comment_form{
+	width:100%;
+	display:block;
+}
+.add_comment_form span, input{
+	display:block;
+}
+.add_comment_form span{
+	font-size:0.8em;
+	font-weight:bold;
+	width:550px;
+	padding:20px 0px 0px 5px;
+}
+.add_comment_form input, textarea{
+	font-size:0.8em;
+	width:550px;
+	height:25px;
+}
+.add_comment_form textarea{
+	height:100px;
+	font-size:0.8em;
+}
+#add_comment_submit{
+	width:150px;
+	height:32px;
+}
+.add_comment_form br{
+	clear:both;
+}
+.add_comment_form p{
+	
+}
+.error{
+	color:#CD0000;
+	font-size:0.8em;
+	line-height:1em;
+	width:100&;
+	text-align:right;
+	margin:0 55px 0.5em 0;
+}
+.archive{
+	
+}
+.archive table{
+	font-size:0.75em;
+	width:100%;
+}
+.archive th{
+	border-bottom:dashed 1px #DDDDDD;
+	padding-bottom:12px;
+}
+.archive tr{
+
+}
+.archive td{
+  padding-bottom:10px;
+  padding-left:17px;
+  padding-right:17px;
+  padding-top:10px;
+  text-align:center;
+}
+#widgets{
+	float:left;
+	width:20%;
+	margin-left:4%;
+}
+.widget h4{
+	color:#555555;
+}
+.widget ul{
+	
+}
+.widget a, li{
+	color:#999999;
+}
+.widget li{
+  line-height:1.4em;
+  margin-left:-18px;
+}
+#footer{
+	float:left;
+	margin-top:20px;
+	padding:10px 0px 10px 0px;
+	width:100%;
+	border-top:solid 1px #EEEEEE;
+	text-align:center;
+	color:#999999;
+	font-size:0.8em;
+}
+/*ajax page block message color whilst processing*/
+.blockUI h1{color:#FFFFFF}  
+
+
+
+.clear{clear:both;}

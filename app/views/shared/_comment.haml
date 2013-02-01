@@ -1,0 +1,9 @@
+%div.comment
+	%div.comment_name 
+		%a{:href => comment.comment_author_url, :rel => "nofollow"}=comment.comment_author
+	%div.comment_time=comment.readable_date
+	%div.comment_avatar 
+		%img{:class => "photo", :src => comment.avatar, :alt => "gravatar"}
+	%div.comment_body
+		%pre=comment.comment_content
+	%div.clear
