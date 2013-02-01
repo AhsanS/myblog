@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"sqlite://db/shout_mouth.db","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/2666226650","stream_state":{},"completed_tables":[],"table_filter":null,"local_tables_info":{"users":1,"posts":3,"comments":1,"legacy_routes":1,"settings":23,"tags":4,"categories":4,"post_tags":6,"category_posts":6}}
