@@ -1,7 +1,7 @@
 source "http://rubygems.org/"
 
 gem "sinatra" 
-gem "data_mapper"
+gem "datamapper"
 gem "haml"
 gem "akismetor"
 gem "i18n"
